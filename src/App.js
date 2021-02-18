@@ -2,15 +2,23 @@ import { defaults } from "lodash";
 import React from "react";
 import Button from "./Button";
 
-const buttonA = <button>Primeiro botão</button>
-const buttonB = <button>Segundo botão</button>
+const buttonA = <button onClick={btnClickConsole}>Primeiro botão</button>
+const buttonB = <button onClick={btnClickAlert}>Segundo botão</button>
 const buttonC = <button>Terceiro botão</button>
 const buttonD = <button>Quarto botão</button>
 const buttonE = <button>Quinto botão</button>
 const hasCustomer = true
-const ifelseButton = false
+const ifelseButton = true
 const ifelseRender = true
 const showName = true
+
+const btnClickAlert = () => {
+    alert("Clique no botão A");
+}
+
+const btnClickConsole = () => {
+    console.log('Botão Clicado...');
+}
 
 const listNames = [
     {
@@ -66,11 +74,16 @@ const renderNames = (listNames,index) => {
 }
 
 const renderSkils = (skils,index) => {
-    return(
-        <div style={{paddingLeft: '30px'}} key={'skil-' + index}>
+    return(               
+        <div key={'skil-' + index} style={{paddingLeft: '30px'}} >
             <li>{skils}</li>
         </div>
     );
+}
+
+const handleChange = (e) => {
+    let {value} = e.target
+    console.log(value)
 }
 const App = () =>{
     return(
@@ -119,6 +132,7 @@ const App = () =>{
                     {listNames.map(renderNames)}
                 </ul>
             </div>
+            <input onChange={handleChange}></input>
         </div>        
     );
 };
